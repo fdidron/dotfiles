@@ -26,6 +26,7 @@ set splitright
 set relativenumber
 set list listchars=tab:»·,trail:·
 set hlsearch
+set hidden
 
 "Indentation
 filetype plugin indent on

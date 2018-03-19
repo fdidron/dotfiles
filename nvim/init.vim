@@ -82,6 +82,9 @@ call plug#begin()
 
 " Less
   Plug 'groenewege/vim-less'
+
+" Gherkin
+  Plug 'chr15m/vim-gherkin'
 call plug#end()
 
 "--- Plugin conf

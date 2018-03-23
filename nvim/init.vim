@@ -42,6 +42,7 @@ if has("autocmd")
   " Run prettier on save
   let g:prettier#autoformat = 0
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+  autocmd BufEnter * silent! lcd %:p:h
 
 endif
 
@@ -128,3 +129,6 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
+
+"Open ranger when opening a directory
+let g:ranger_replace_netrw = 1

@@ -24,8 +24,7 @@ set splitright
 
 "General options
 set relativenumber
-set list listchars=tab:»·,trail:·
-set hlsearch
+set list listchars=tab:\ \ ,trail:·
 set hidden
 
 "Indentation
@@ -43,8 +42,35 @@ if has("autocmd")
   let g:prettier#autoformat = 0
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
   autocmd BufEnter * silent! lcd %:p:h
+  autocmd FileType go setlocal shiftwidth=4 tabstop=4
 
 endif
+
+"StatusLine
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  ⎇  '.l:branchname.' ':''
+endfunction
+
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m\
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\
 
 "--- VimPlug
 call plug#begin()
@@ -62,6 +88,12 @@ call plug#begin()
 "Task runners
   Plug 'w0rp/ale'
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+"Git
+  Plug 'tpope/vim-fugitive'
+
+"Search
+  Plug 'haya14busa/incsearch.vim'
 
 "Autocomplete
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -86,6 +118,9 @@ call plug#begin()
 
 " Gherkin
   Plug 'chr15m/vim-gherkin'
+
+" Go
+  Plug 'fatih/vim-go'
 call plug#end()
 
 "--- Plugin conf
@@ -132,3 +167,13 @@ let g:user_emmet_settings = {
 
 "Open ranger when opening a directory
 let g:ranger_replace_netrw = 1
+
+"Incsearch setup
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)

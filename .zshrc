@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-source ~/.config/i3/start-gnome-keyring.sh
+source ~/.config/i3/keyring.sh
 # Path to your oh-my-zsh installation.
 export ZSH=/home/florian/.oh-my-zsh
 
@@ -90,7 +90,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
   startx
 fi
 
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 

@@ -113,14 +113,17 @@ call plug#begin()
   Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
   Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
+" Go
+  Plug 'fatih/vim-go'
 " Less
   Plug 'groenewege/vim-less'
 
 " Gherkin
   Plug 'chr15m/vim-gherkin'
 
-" Go
-  Plug 'fatih/vim-go'
+" Markdown
+  Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
 call plug#end()
 
 "--- Plugin conf

@@ -41,9 +41,8 @@ if has("autocmd")
   " Run prettier on save
   let g:prettier#autoformat = 0
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
-  autocmd BufEnter * silent! lcd %:p:h
+  "autocmd BufEnter * silent! lcd %:p:h
   autocmd FileType go setlocal shiftwidth=4 tabstop=4
-
 endif
 
 "StatusLine
@@ -77,7 +76,6 @@ call plug#begin()
 "UI
   Plug 'luochen1990/rainbow'
   Plug 'chriskempson/base16-vim'
-  Plug 'trevordmiller/nova-vim'
 
 "File Navigation
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -97,24 +95,22 @@ call plug#begin()
 
 "Autocomplete
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-  Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
   Plug 'ervandew/supertab'
 
 " Language Support
 " Snippets
   Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
+  Plug 'fdidron/vim-react-snippets'
+  Plug 'epilande/vim-es2015-snippets'
+  Plug 'joaohkfaria/vim-jest-snippets'
+
 " JavaScript
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
-  Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
-  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
-  Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Go
   Plug 'fatih/vim-go'
+
 " Less
   Plug 'groenewege/vim-less'
 
@@ -124,6 +120,11 @@ call plug#begin()
 " Markdown
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
+
+" Rails
+  Plug 'tpope/vim-rails'
+" CSV
+  Plug 'chrisbra/csv.vim'
 call plug#end()
 
 "--- Plugin conf
@@ -139,34 +140,9 @@ let g:rainbow_active = 1
 let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ }
-let g:ale_sign_error = '●'
-let g:ale_sign_warning = '.'
 
 "Autocomplete
-let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [
-  \ 'tern#Complete',
-  \ 'jspc#omni'
-\]
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#enable_smart_case = 1
-set completeopt=longest,menuone,preview
-let g:deoplete#sources = {}
-let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-let g:SuperTabClosePreviewOnPopupClose = 1
-
-let g:user_emmet_leader_key='<Tab>'
-let g:user_emmet_settings = {
-\  'javascript.jsx' : {
-\      'extends' : 'jsx',
-\  },
-\}
 
 "Open ranger when opening a directory
 let g:ranger_replace_netrw = 1
@@ -180,3 +156,5 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+let g:vim_markdown_folding_disabled = 1

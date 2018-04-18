@@ -70,8 +70,9 @@ zstyle :omz:plugins:ssh-agent identities id_rsa
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export PATH=~/.npm-global/bin:$PATH
+export PATH=~/.gem/ruby/2.5.0/bin:~/.npm-global/bin:$PATH
 export BROWSER=/usr/bin/google-chrome-stable
+[[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"
 
 # Base16 Shell
 eval sh $HOME/.config/base16-shell/scripts/base16-solarflare.sh
@@ -83,7 +84,7 @@ eval sh $HOME/.config/base16-shell/scripts/base16-solarflare.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='emacs'
+  export EDITOR='nvim'
 fi
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
@@ -91,19 +92,11 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 fi
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+alias v="nvim"
+alias vim="nvim"
+alias d="nvim ~/dev"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+#Misc
+export FZF_DEFAULT_COMMAND='ag --ignore node_modules -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -78,6 +78,7 @@ call plug#begin()
   Plug 'luochen1990/rainbow'
   Plug 'chriskempson/base16-vim'
   Plug 'trevordmiller/nova-vim'
+  Plug 'chrisbra/Colorizer'
 
 "File Navigation
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }

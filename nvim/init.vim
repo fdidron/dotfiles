@@ -23,7 +23,7 @@ set splitbelow
 set splitright
 
 "General options
-set relativenumber
+"set relativenumber
 set list listchars=tab:\ \ ,trail:·
 set hidden
 
@@ -43,33 +43,44 @@ if has("autocmd")
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
   "autocmd BufEnter * silent! lcd %:p:h
   autocmd FileType go setlocal shiftwidth=4 tabstop=4
+  augroup autoindent
+    au!
+    autocmd BufWritePre *.rb,*.erb :normal migg=G`i
+  augroup End
 endif
 
 "StatusLine
+  function! ALEWarnings() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? '' : printf('  W:%d ', all_non_errors)
+  endfunction
 
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
+  function! ALEErrors() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? '' : printf(' E:%d ', all_errors)
+  endfunction
 
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  ⎇  '.l:branchname.' ':''
-endfunction
+  function! ALEStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? ' ok ' : ''
+  endfunction
 
-set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m\
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\
+  set laststatus=2
+  set statusline=%<%f
+  set statusline+=%w%h%m%r
+
+  set statusline+=\ %y
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%%\
+
+  set statusline+=\%#StatusLineOk#%{ALEStatus()}
+  set statusline+=\%#StatusLineError#%{ALEErrors()}
+  set statusline+=\%#StatusLineWarning#%{ALEWarnings()}
 
 "--- VimPlug
 call plug#begin()
@@ -107,7 +118,7 @@ call plug#begin()
 
 " JavaScript
   Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
+  Plug 'maxmellon/vim-jsx-pretty'
 
 " Go
   Plug 'fatih/vim-go'

@@ -1,7 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-source ~/.config/i3/keyring.sh
 # Path to your oh-my-zsh installation.
 export ZSH=/home/florian/.oh-my-zsh
 
@@ -87,10 +86,6 @@ else
   export EDITOR='nvim'
 fi
 
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  startx
-fi
-
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -98,7 +93,14 @@ export ARCHFLAGS="-arch x86_64"
 alias v="nvim"
 alias vim="nvim"
 alias d="nvim ~/dev"
+alias chrome="google-chrome-stable --force-device-scale-factor=1.5"
 
 #Misc
 export FZF_DEFAULT_COMMAND='ag --ignore node_modules -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [[ "$(tty)" = "/dev/tty1" ]]; then
+  pgrep i3 || exec startx -- -dpi 138
+fi
+
+source /usr/share/nvm/init-nvm.sh

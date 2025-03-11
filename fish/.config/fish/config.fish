@@ -3,6 +3,7 @@ if status is-interactive
 end
 
 set -gx EDITOR nvim
+set -gx VISUAL nvim
 set -gx BROWSER brave-browser
 set -gx FLYCTL_INSTALL $HOME/.fly
 set -gx GOPATH $HOME/dev/go

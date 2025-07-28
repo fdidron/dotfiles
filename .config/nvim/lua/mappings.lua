@@ -37,6 +37,10 @@ vim.keymap.set("n", "gj", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "g.", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "gk", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "g;", vim.lsp.buf.format, {})
+vim.keymap.set("n", "g/", vim.diagnostic.open_float, {})
+
+-- Copilot Chat
+vim.keymap.set("n", "gi", ":CopilotChatToggle<CR>", {})
 
 -- Hop Hop
 vim.keymap.set("n", "<Leader>s", require("hop").hint_words, {})
@@ -44,7 +48,6 @@ vim.keymap.set("n", "<Leader>s", require("hop").hint_words, {})
 -- Quit all
 vim.keymap.set("n", "<Leader>qq", ":qa<CR>", {})
 
--- Terminal
-vim.keymap.set("n", "-", ":Floaterminal<CR>", {})
-
+-- Ctrl + Backspace
+--vim.keymap.set("i", "<C-BS>", "<C-w>")
 

@@ -10,10 +10,13 @@ set -gx GOPATH $HOME/dev/go
 set -gx PATH $HOME/.local/bin $PATH
 set -gx PATH $HOME/.cargo/bin $PATH
 set -gx PATH $HOME/.npm/bin $PATH
+set -gx PATH $HOME/.rvm/bin $PATH
 set -gx PATH $GOPATH/bin $PATH
+set -gx PATH /usr/local/go/bin $PATH
 set -gx PATH $HOME/dev/zsa/Kaleidoscope/bin $PATH
 set -gx PATH /opt/nvim-linux64/bin $PATH
 set -gx PATH $FLYCTL_INSTALL/bin $PATH
+set -gx PATH /home/florian/dev/odin/Odin $PATH
 set -gx QMK_BASE $HOME/dev/zsa/qmk_firmware
 set -gx QMK_CANARY_BASE $HOME/dev/zsa/qmk_canary
 set -gx KALEIDOSCOPE_DIR $HOME/dev/zsa/Kaleidoscope
@@ -27,3 +30,5 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+fish_vi_key_bindings

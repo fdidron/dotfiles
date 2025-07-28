@@ -1,9 +1,12 @@
+vim.opt.shell = "/bin/bash"
+
 require("settings")
 require("plugins")
 require("ui")
 require("tvscope")
 require("lsp")
---require("debugging")
 require("tree-sitter")
 require("completions")
 require("mappings")
+
+require("oil-bookmarks").setup()

@@ -1,12 +1,16 @@
 local hp = require('harpoon')
 -- Catpuccin should be installed in the plugins.lua file
-vim.cmd.colorscheme "catppuccin-mocha"
+require('ayu').setup({
+    mirage = true,
+})
+
+vim.cmd('colorscheme ayu')
 
 -- Lualine
 local lualine = require('lualine')
 
 local config = {
-    theme = "catppuccin",
+    theme = "ayu",
 }
 
 lualine.setup(config)

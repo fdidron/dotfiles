@@ -15,26 +15,24 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- LSP
     "williamboman/mason.nvim",
-    {
-        "williamboman/mason-lspconfig.nvim",
-        after = { "mason.nvim", "nvim-lspconfig" }
-    },
-    {
-        "folke/trouble.nvim",
-        opts = {},
-        cmd = "Trouble"
-    },
     "neovim/nvim-lspconfig",
-    "nvimtools/none-ls.nvim",
-    -- Rust
-    "simrat39/rust-tools.nvim",
+    "stevearc/conform.nvim",
     -- Treesitter
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     { "slim-template/vim-slim" },
     -- UI
-    -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        event = "VeryLazy", -- Or `LspAttach`
+        priority = 1000, -- needs to be loaded in first
+        config = function()
+            require('tiny-inline-diagnostic').setup()
+            vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
+        end
+    },
     { "Shatur/neovim-ayu" },
-    { "j-hui/fidget.nvim",               opts = {} },
+    -- Notifications
+    { "j-hui/fidget.nvim", opts = {} },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -77,33 +75,14 @@ require("lazy").setup({
         },
         config = true,
     },
-    {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        dependencies = { "nvim-lua/plenary.nvim" },
-    },
     -- Completion
     { "hrsh7th/nvim-cmp" },
     "hrsh7th/cmp-nvim-lsp",
     "L3MON4D3/LuaSnip",
-    --"saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
     {
         "supermaven-inc/supermaven-nvim",
     },
-    --"zbirenbaum/copilot.lua",
-    --[[
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        dependencies = {
-            { "zbirenbaum/copilot.lua" },
-            { "nvim-lua/plenary.nvim", branch = "master" },
-        },
-        build = "make tiktoken",
-        opts = {
-        },
-    },
-    --]]
     -- Motions
     "smoka7/hop.nvim",
     -- Auto Pairs
@@ -112,6 +91,25 @@ require("lazy").setup({
         event = "InsertEnter",
         config = true,
     },
+    -- Indent indicator
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+    -- Symbols navigator
+    {
+        "SmiteshP/nvim-navic",
+        dependencies = { "neovim/nvim-lspconfig" },
+    },
+    {
+        "hasansujon786/nvim-navbuddy",
+        dependencies = { 
+            "neovim/nvim-lspconfig",
+            "SmiteshP/nvim-navic",
+            "MunifTanjim/nui.nvim",
+            "numToStr/Comment.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+    }
+
+
 })
 
 require("hop").setup()
@@ -133,4 +131,3 @@ require("oil").setup({
         ["<C-;>"] = "actions.refresh",
     },
 })
-

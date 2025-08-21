@@ -1,5 +1,5 @@
 local builtin = require("telescope.builtin")
-local hp = require("harpoon")
+local conform = require("conform")
 
 -- Alt-tab between the two last opened buffers
 vim.keymap.set("n", "<Leader><Tab>", "<C-^>")
@@ -22,22 +22,15 @@ vim.keymap.set("n", "<Leader>;", builtin.commands, {})
 vim.keymap.set("n", "<Leader>j", ":Oil <CR>", {})
 vim.keymap.set("n", "<Leader>v", ":Neogit<CR>", {})
 
--- Harpoon
-vim.keymap.set("n", "<Leader>ha", function() hp:list():add() end)
-vim.keymap.set("n", "<Leader>hh", function() hp.ui:toggle_quick_menu(hp:list()) end)
-vim.keymap.set("n", "<Leader>h1", function() hp:list():select(1) end)
-vim.keymap.set("n", "<Leader>h2", function() hp:list():select(2) end)
-vim.keymap.set("n", "<Leader>h3", function() hp:list():select(3) end)
-vim.keymap.set("n", "<Leader>h4", function() hp:list():select(4) end)
-vim.keymap.set("n", "<Leader>hk", function() hp:list():prev() end)
-vim.keymap.set("n", "<Leader>hj", function() hp:list():next() end)
-
 -- LSP
 vim.keymap.set("n", "gj", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "g.", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "gk", vim.lsp.buf.definition, {})
-vim.keymap.set("n", "g;", vim.lsp.buf.format, {})
+vim.keymap.set("n", "g;", conform.format, {})
 vim.keymap.set("n", "g/", vim.diagnostic.open_float, {})
+vim.keymap.set("n", "<Leader>e", vim.diagnostic.goto_next, {})
+vim.keymap.set("n", "<Leader>E", vim.diagnostic.goto_prev, {})
+vim.keymap.set("n", "<Leader>a", ":Navbuddy<CR>", {})
 
 -- Copilot Chat
 vim.keymap.set("n", "gi", ":CopilotChatToggle<CR>", {})

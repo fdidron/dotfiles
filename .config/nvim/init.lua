@@ -8,5 +8,3 @@ require("lsp")
 require("tree-sitter")
 require("completions")
 require("mappings")
-
-require("oil-bookmarks").setup()

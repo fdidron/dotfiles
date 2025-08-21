@@ -1,4 +1,3 @@
---[[
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.slim = {
   install_info = {
@@ -28,6 +27,7 @@ require("nvim-treesitter.configs").setup({
 		"lua",
 		"rust",
 		"toml",
+        "templ",
 	},
 	auto_install = true,
 	highlight = {
@@ -41,4 +41,3 @@ require("nvim-treesitter.configs").setup({
 		max_file_lines = nil,
 	},
 })
-]]

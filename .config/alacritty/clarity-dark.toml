@@ -1,0 +1,26 @@
+
+# Theme: Clarity Dark
+colors:
+  primary:
+    background: '#1c2135'
+    foreground: '#e0e0e0'
+
+  normal:
+    black:   '#15192c'
+    red:     '#f08080'
+    green:   '#ff9966'
+    yellow:  '#ffcc66'
+    blue:    '#89ddff'
+    magenta: '#89ddff'
+    cyan:    '#6a737d'
+    white:   '#e0e0e0'
+
+  bright:
+    black:   '#15192c'
+    red:     '#f08080'
+    green:   '#ff9966'
+    yellow:  '#ffcc66'
+    blue:    '#89ddff'
+    magenta: '#89ddff'
+    cyan:    '#6a737d'
+    white:   '#e0e0e0'

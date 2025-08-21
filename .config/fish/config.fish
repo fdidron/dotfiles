@@ -20,6 +20,7 @@ set -gx PATH /home/florian/dev/odin/Odin $PATH
 set -gx QMK_BASE $HOME/dev/zsa/qmk_firmware
 set -gx QMK_CANARY_BASE $HOME/dev/zsa/qmk_canary
 set -gx KALEIDOSCOPE_DIR $HOME/dev/zsa/Kaleidoscope
+set -gx SSH_AUTH_SOCK /run/user/1000/keyring/ssh
 
 rvm default
 zoxide init fish | source

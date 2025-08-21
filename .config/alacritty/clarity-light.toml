@@ -1,0 +1,26 @@
+
+# Theme: Clarity Light
+colors:
+  primary:
+    background: '#f0f0f5'
+    foreground: '#333333'
+
+  normal:
+    black:   '#e9e9ee'
+    red:     '#6a0dad'
+    green:   '#007a00'
+    yellow:  '#a0522d'
+    blue:    '#00508c'
+    magenta: '#00508c'
+    cyan:    '#888888'
+    white:   '#333333'
+
+  bright:
+    black:   '#e9e9ee'
+    red:     '#6a0dad'
+    green:   '#007a00'
+    yellow:  '#a0522d'
+    blue:    '#00508c'
+    magenta: '#00508c'
+    cyan:    '#888888'
+    white:   '#333333'

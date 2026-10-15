@@ -1,0 +1,6 @@
+include ./ayu_mirage.conf
+font_size 12
+
+# Middle-click pastes the primary selection, including in apps that grab the
+# mouse (claude, vim, htop).
+mouse_map middle release grabbed,ungrabbed paste_from_selection

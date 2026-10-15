@@ -1,4 +1,3 @@
-local lsp = require("lspconfig")
 local navic = require("nvim-navic")
 local navbuddy = require("nvim-navbuddy")
 
@@ -46,31 +45,68 @@ end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lsp.clangd.setup({ capabilities = capabilities })
-lsp.cssls.setup({ capabilities = capabilities })
-lsp.dockerls.setup({ capabilities = capabilities })
-lsp.docker_compose_language_service.setup({ capabilities = capabilities })
-lsp.emmet_ls.setup({ capabilities = capabilities })
-lsp.graphql.setup({ capabilities = capabilities })
-lsp.html.setup({ capabilities = capabilities })
-lsp.jsonls.setup({ capabilities = capabilities })
-lsp.lua_ls.setup({ capabilities = capabilities })
-lsp.remark_ls.setup({ capabilities = capabilities })
-lsp.ruby_lsp.setup({ capabilities = capabilities })
-lsp.sqlls.setup({ capabilities = capabilities })
-lsp.svelte.setup({ capabilities = capabilities })
-lsp.taplo.setup({ capabilities = capabilities })
-lsp.templ.setup({ capabilities = capabilities })
-lsp.yamlls.setup({ capabilities = capabilities })
-lsp.ols.setup({ capabilities = capabilities })
-lsp.gdscript.setup({ capabilities = capabilities })
+vim.lsp.config('clangd', {
+    capabilities = capabilities
+})
+vim.lsp.config('cssls', {
+    capabilities = capabilities
+})
+vim.lsp.config('dockerls', {
+    capabilities = capabilities
+})
+vim.lsp.config('docker_compose_language_service', {
+    capabilities = capabilities
+})
+vim.lsp.config('emmet_ls', {
+    capabilities = capabilities
+})
+vim.lsp.config('graphql', {
+    capabilities = capabilities
+})
+vim.lsp.config('html', {
+    capabilities = capabilities
+})
+vim.lsp.config('jsonls', {
+    capabilities = capabilities
+})
+vim.lsp.config('lua_ls', {
+    capabilities = capabilities
+})
+vim.lsp.config('remark_ls', {
+    capabilities = capabilities
+})
+vim.lsp.config('ruby_lsp', {
+    capabilities = capabilities
+})
+vim.lsp.config('sqlls', {
+    capabilities = capabilities
+})
+vim.lsp.config('svelte', {
+    capabilities = capabilities
+})
+vim.lsp.config('taplo', {
+    capabilities = capabilities
+})
+vim.lsp.config('templ', {
+    capabilities = capabilities
+})
+vim.lsp.config('yamlls', {
+    capabilities = capabilities
+})
+vim.lsp.config('ols', {
+    capabilities = capabilities
+})
+vim.lsp.config('gdscript', {
+    capabilities = capabilities
+})
 
-lsp.gopls.setup({
+
+vim.lsp.config('gopls', {
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
 
-lsp.tailwindcss.setup({
+vim.lsp.config('tailwindcss', {
 	cmd = { "tailwindcss-language-server", "--stdio" },
 	filetypes = {
 		"html",
@@ -86,7 +122,7 @@ lsp.tailwindcss.setup({
 	capabilities = capabilities,
 })
 
-lsp.ts_ls.setup({
+vim.lsp.config('ts_ls', {
 	init_options = {
 		hostInfo = "neovim",
 		preferences = {
@@ -99,7 +135,7 @@ lsp.ts_ls.setup({
 	on_attach = on_attach,
 })
 
-lsp.lua_ls.setup({
+vim.lsp.config('lua_ls', {
 	settings = {
 		Lua = {
 			workspace = {
@@ -113,7 +149,7 @@ lsp.lua_ls.setup({
 	on_attach = on_attach,
 })
 
-lsp.rust_analyzer.setup({
+vim.lsp.config('rust_analyzer', {
 	settings = {
 		["rust-analyzer"] = {
 			diagnostics = {

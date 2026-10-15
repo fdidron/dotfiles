@@ -119,7 +119,13 @@ require("lazy").setup({
             opts = {},
         }
     },
-    checker = { enabled = true },
+})
+
+-- update plugins on every start
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        require("lazy").update({ show = false })
+    end,
 })
 
 require("hop").setup()
